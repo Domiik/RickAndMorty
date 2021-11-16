@@ -9,15 +9,22 @@ import UIKit
 
 class HeroesTableViewController: UITableViewController {
     
-    private var heroesViewModel: TableHeroesViewModelTypeProtocol?
+    private var heroesViewModel = HeroesViewModel()
     
     override func loadView() {
         super.loadView()
-        self.heroesViewModel = HeroesViewModel()
+        
+        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.heroesViewModel.fetchHeroes {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+           
+        }
         
     }
 
@@ -25,17 +32,21 @@ class HeroesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print(heroesViewModel?.numberOfRow)
-        return heroesViewModel?.numberOfRow ?? 0
+        print(heroesViewModel.numberOfRowInSection())
+        return heroesViewModel.numberOfRowInSection()
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HeroesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? HeroesTableViewCell
+        guard let tableViewCell = cell  else { return HeroesTableViewCell() }
         
+        let cellViewModel = heroesViewModel.cellViewModel(forIndexPath: indexPath)
+        
+        tableViewCell.viewModel = cellViewModel
         // Configure the cell...
 
-        return cell
+        return tableViewCell
     }
     
 

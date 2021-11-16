@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6223DC3F2744450500D62AF9 /* TableViewCellHeroesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6223DC3E2744450500D62AF9 /* TableViewCellHeroesViewModel.swift */; };
 		624E3B45273BE6E5007175EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624E3B44273BE6E5007175EF /* AppDelegate.swift */; };
 		624E3B47273BE6E5007175EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624E3B46273BE6E5007175EF /* SceneDelegate.swift */; };
 		624E3B4C273BE6E5007175EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 624E3B4A273BE6E5007175EF /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6223DC3E2744450500D62AF9 /* TableViewCellHeroesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellHeroesViewModel.swift; sourceTree = "<group>"; };
 		624E3B41273BE6E5007175EF /* Lesson_12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lesson_12.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		624E3B44273BE6E5007175EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		624E3B46273BE6E5007175EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				62FD95CB273C12C300BD1E7C /* HeroesViewModel.swift */,
+				6223DC3E2744450500D62AF9 /* TableViewCellHeroesViewModel.swift */,
 			);
 			path = ModelView;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				62FD95CA273C104400BD1E7C /* HeroesData.swift in Sources */,
 				62FD95CC273C12C300BD1E7C /* HeroesViewModel.swift in Sources */,
 				62D881EA273BF37000438BEB /* HeroesTableViewController.swift in Sources */,
+				6223DC3F2744450500D62AF9 /* TableViewCellHeroesViewModel.swift in Sources */,
 				62D4C09B2743CCDD0005ABFE /* TableHeroesViewModelTypeProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,46 +23,29 @@ enum ApiError: Error {
 }
 
 class APIService: NSObject {
-    func downloadItem(url: String,completionHandler: @escaping (Heroes) -> ()) {
+    func downloadItem(url: String,completionHandler: @escaping ([Heroes]) -> ()) {
         var title, imageUrl: String!
         if Connectivity.isConnectedToInternet {
             AF.request(url).responseJSON { response in
-                guard let data = response.data else { return }
+                guard let data = response.data else {
+                    print("bad")
+                    return }
                 if let currentHeroes = self.parseJSON(withData: data ) {
-                   // print(currentHeroes)
+                    //print(currentHeroes)
                     completionHandler(currentHeroes)
+                    
                 }
             }
+            
         } else {
             print(ApiError.noConnection)
             //completionHandler(false)
         }
-        
-        
-        
-//        if Connectivity.isConnectedToInternet {
-//            AF.request(url).responseJSON { response in
-//                switch response.result {
-//                case .success(let value):
-//                    if let json = try? JSON(value) {
-//                        let items = json.map { Heroes(currentHeroesData: $0.1.rawValue) }
-//                        completionHandler(items)
-//                    }
-//                    break
-//                case .failure(let error):
-//                    print(ApiError.noData)
-//                    //completionHandler(false)
-//                    break
-//                }
-//            }
-//        } else {
-//            print(ApiError.noConnection)
-//            //completionHandler(false)
-//        }
     }
     
     
-    func parseJSON(withData data: Data) -> Heroes? {
+    func parseJSON(withData data: Data) -> [Heroes]? {
+        var heros = [Heroes]()
         let decoder = JSONDecoder()
         do {
             let currentHeroesData = try decoder.decode(HeroesData.self, from: data)
@@ -71,7 +54,9 @@ class APIService: NSObject {
                 {
                     return nil
                 }
+                heros.append(currentHeroes)
             }
+            return heros
         } catch let error as NSError {
             print(error.localizedDescription)
         }
