@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import UIKit
 
 
 struct Connectivity {
@@ -63,4 +64,21 @@ class APIService: NSObject {
         return nil
     }
     
+    
+    func downloadImage(urlImage: String,completionHandler: @escaping (UIImage) -> ()) {
+        AF.request(urlImage).responseData { (response) in
+           switch response.result {
+           case .success(let value):
+               if let image = UIImage(data: value) {
+                    completionHandler(image)
+               }
+              // completionHandler(true)
+               break
+           case .failure(let error):
+               print(error)
+              // completionHandler(false)
+               break
+           }
+       }
+    }
 }

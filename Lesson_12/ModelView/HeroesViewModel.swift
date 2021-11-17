@@ -11,6 +11,8 @@ class HeroesViewModel: NSObject {
     
     private var apiService: APIService!
     private var heroes: [Heroes]?
+    private var imageHeroes = [TableViewCellHeroesViewModel]()
+    private var selectedIndexPath: IndexPath?
     
     
     override init() {
@@ -33,6 +35,17 @@ class HeroesViewModel: NSObject {
         guard let heroes = heroes else {return nil}
         let hero = heroes[indexPath.row]
         return TableViewCellHeroesViewModel(heroes: hero)
+    }
+    
+    
+    func viewModelForSelectedRow() -> HeroesDetailViewModel? {
+        guard let selectIndexPath = selectedIndexPath else { return nil}
+        guard let heroes = heroes else {return nil}
+        return HeroesDetailViewModel(heroes: heroes[selectIndexPath.row])
+    }
+    
+    func selectRow(atIndexPath indexPath: IndexPath) {
+        self.selectedIndexPath = indexPath
     }
 
 }

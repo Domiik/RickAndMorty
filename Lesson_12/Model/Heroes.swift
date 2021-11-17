@@ -9,13 +9,14 @@ import Foundation
 
 
 struct Heroes {
+    let id: Int
     let name: String
     let status: String
     let species: String
     let type: String
     let gender: String
     let location: String
-    //let image: String
+    let image: String
     
     init?(currentHeroesData: HeroesDataResult) {
         name = currentHeroesData.name
@@ -24,5 +25,7 @@ struct Heroes {
         type = currentHeroesData.type
         gender = currentHeroesData.gender
         location = currentHeroesData.location.name
+        image = currentHeroesData.image
+        id = currentHeroesData.id
     }
 }

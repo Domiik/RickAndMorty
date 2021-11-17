@@ -25,6 +25,11 @@ class HeroesTableViewCell: UITableViewCell {
             statusHeroes.text = viewModel.status
             formHeroes.text = viewModel.gender
             geolocationHeroes.text = viewModel.location
+            viewModel.downloadImage {
+                DispatchQueue.main.async {
+                    self.imageHeroes.image = viewModel.image
+                }
+            }
             self.statusColor()
         }
     }
@@ -35,6 +40,16 @@ class HeroesTableViewCell: UITableViewCell {
         } else {
             statusView.backgroundColor = .green
         }
+    }
+    
+    
+    
+    override func layoutSubviews() {
+          super.layoutSubviews()
+          //set the values for top,left,bottom,right margins
+          let margins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+          contentView.frame = contentView.frame.inset(by: margins)
+          contentView.layer.cornerRadius = 10
     }
     
 }
